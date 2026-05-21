@@ -1,149 +1,147 @@
-# Real-Time Multilingual Voice AI Frontend
+Voice AI Clinic Frontend
 
-Production-grade React + TypeScript + Vite frontend for clinical appointment booking with real-time voice streaming.
+A modern AI-powered voice-based clinic appointment booking frontend built using React, Vite, TypeScript, Zustand, Tailwind CSS, and Framer Motion.
 
-## Stack
+Live Project URL:
 
-- React 18 + TypeScript
-- Vite
-- Tailwind CSS
-- Framer Motion
-- Zustand
-- Native WebSocket API
-- MediaRecorder + Web Audio API
-
-## Backend Endpoints
-
-- API Base URL: `https://voice-text-ai.onrender.com`
-- WebSocket URL: `wss://voice-text-ai.onrender.com/ws/audio`
-
-## Folder Structure
-
-```txt
+Voice AI Clinic Frontend Live Demo
+Features
+🎤 Real-time Voice Interaction
+🤖 AI Assistant Responses
+🌍 Multi-language Support
+📅 Appointment Booking System
+🔊 AI Audio Playback
+⚡ WebSocket Real-time Communication
+🧠 Session Memory Handling
+📱 Responsive UI Design
+✨ Smooth Framer Motion Animations
+🗂 Zustand State Management
+🎨 Tailwind CSS Styling
+🔁 Automatic Reconnection Handling
+📡 Live Voice Streaming
+Tech Stack
+Frontend
+React.js
+TypeScript
+Vite
+Zustand
+Tailwind CSS
+Framer Motion
+WebSocket
+Project Structure
 frontend/
-├── public/
+│
 ├── src/
-│   ├── api/
-│   │   ├── appointments.ts
-│   │   ├── config.ts
-│   │   └── websocket.ts
-│   ├── components/
-│   │   ├── appointment/
-│   │   │   ├── AppointmentCard.tsx
-│   │   │   ├── BookingStatus.tsx
-│   │   │   └── DoctorCard.tsx
-│   │   ├── chat/
-│   │   │   ├── AIMessage.tsx
-│   │   │   ├── ChatWindow.tsx
-│   │   │   └── UserMessage.tsx
-│   │   ├── dashboard/
-│   │   │   ├── LanguageIndicator.tsx
-│   │   │   ├── LatencyPanel.tsx
-│   │   │   ├── SessionMemory.tsx
-│   │   │   └── SystemStatus.tsx
-│   │   └── voice/
-│   │       ├── AIWaveAnimation.tsx
-│   │       ├── AudioVisualizer.tsx
-│   │       ├── MicrophoneButton.tsx
-│   │       └── VoiceStatus.tsx
 │   ├── hooks/
-│   │   ├── useAudioPlayer.ts
-│   │   ├── useMicrophone.ts
-│   │   ├── useVoiceStreaming.ts
-│   │   └── useWebSocket.ts
-│   ├── pages/
-│   │   └── Home.tsx
 │   ├── services/
-│   │   ├── audioPlayback.ts
-│   │   ├── audioStreaming.ts
-│   │   └── websocketService.ts
 │   ├── store/
-│   │   ├── appointmentStore.ts
-│   │   ├── sessionStore.ts
-│   │   └── voiceStore.ts
+│   ├── pages/
 │   ├── styles/
-│   │   └── theme.css
 │   ├── App.tsx
-│   ├── index.css
-│   └── main.tsx
-├── .env.example
+│   ├── main.tsx
+│   └── index.css
+│
+├── public/
 ├── index.html
 ├── package.json
-├── postcss.config.js
+├── vite.config.ts
 ├── tailwind.config.js
-├── tsconfig.app.json
 ├── tsconfig.json
-├── tsconfig.node.json
-└── vite.config.ts
-```
+├── postcss.config.js
+└── README.md
+Installation
+Clone Repository
+git clone https://github.com/vishwalavanya/voice-text-ai-frontend.git
+Move Into Project
+cd voice-text-ai-frontend
+Install Dependencies
+npm install
+Run Development Server
+npm run dev
 
-## Commands To Run In VS Code Terminal
+Frontend runs on:
 
-1. `cd frontend`
-2. `npm install`
-3. `copy .env.example .env` (Windows PowerShell) or `cp .env.example .env` (macOS/Linux)
-4. `npm run dev`
+http://localhost:5173
+Production Build
+npm run build
+Preview Production Build
+npm run preview
+Environment Variables
 
-Build command:
+Create:
 
-1. `npm run build`
-2. `npm run preview`
+.env
 
-## Full Scaffold Commands (If You Want To Create Again)
+Example:
 
-1. `npm create vite@latest frontend -- --template react-ts`
-2. `cd frontend`
-3. `npm install`
-4. `npm install tailwindcss postcss autoprefixer framer-motion zustand lucide-react clsx`
-5. `npx tailwindcss init -p`
+VITE_BACKEND_URL=https://your-backend-url.com
+VITE_WEBSOCKET_URL=wss://your-websocket-url.com
+Important Scripts
+Development
+"dev": "node ./node_modules/vite/bin/vite.js"
+Production Build
+"build": "node ./node_modules/vite/bin/vite.js build"
+Preview
+"preview": "node ./node_modules/vite/bin/vite.js preview"
 
-## Realtime Flow
+These scripts avoid Linux permission-denied issues during Vercel deployment.
 
-1. User taps microphone.
-2. `navigator.mediaDevices.getUserMedia()` opens mic stream.
-3. `MediaRecorder` emits chunks every 250ms.
-4. Frontend sends chunks via `wss://voice-text-ai.onrender.com/ws/audio`.
-5. Backend returns transcript, AI text, memory updates, appointment updates, and optional audio chunks.
-6. UI updates live transcript and AI response cards.
-7. Audio chunks are queued and played in sequence.
+Netlify Deployment Settings
+Framework Preset
+Vite
+Build Command
+npm run build
+Output Directory
+dist
+Install Command
+npm install
+Node.js Version
+20.x
+Important Deployment Fixes
+Fix: vite permission denied
 
-## Backend Message Handling
+Use:
 
-The frontend parser handles flexible backend payloads:
+"build": "node ./node_modules/vite/bin/vite.js build"
 
-- User transcript keys like `user_transcript`, `transcript`.
-- AI response keys like `ai_response`, `assistant_response`, `response`.
-- Language keys like `language`, `lang`, `detected_language`.
-- Latency keys like `stt_latency`, `llm_latency`, `tts_latency`, `total_latency`.
-- Session memory payloads like `session_memory` or `memory`.
-- Appointment payloads like `appointment` or `booking`.
+instead of:
 
-## Deployment
+"build": "vite build"
+.npmrc Configuration
 
-## Vercel
+Create:
 
-1. Push this `frontend` folder to GitHub.
-2. Import project in Vercel.
-3. Set Root Directory to `frontend`.
-4. Add env vars:
-   - `VITE_API_BASE_URL=https://voice-text-ai.onrender.com`
-   - `VITE_WS_AUDIO_URL=wss://voice-text-ai.onrender.com/ws/audio`
-5. Build command: `npm run build`
-6. Output directory: `dist`
+.npmrc
 
-## Netlify
+Add:
 
-1. Push this `frontend` folder to GitHub.
-2. Create new site from Git repo in Netlify.
-3. Base directory: `frontend`
-4. Build command: `npm run build`
-5. Publish directory: `frontend/dist`
-6. Add the same two environment variables.
+unsafe-perm=true
+fund=false
+audit=false
+GitHub Push Commands
+git add .
+git commit -m "frontend deployment update"
+git push origin main
+Netlify Deployment
 
-## Production Notes
+Live URL:
 
-- Use HTTPS hosting so browser microphone access works.
-- Keep the WebSocket URL as `wss://` in production.
-- If backend audio format changes, update parser and player MIME support in:
-  - `src/api/websocket.ts`
-  - `src/services/audioPlayback.ts`
+Netlify Deployment
+Browser Testing
+
+Recommended Browser:
+
+Google Chrome
+
+Download:
+
+
+Google Chrome Official Website
+
+Test Features:
+
+Voice microphone access
+AI response playback
+WebSocket connectivity
+Appointment booking flow
+Mobile responsiveness
