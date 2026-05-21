@@ -1,0 +1,69 @@
+@import "./styles/theme.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: "IBM Plex Sans", system-ui, sans-serif;
+  background-color: #03050b;
+  color: #e6edff;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 14% 18%, rgba(18, 214, 223, 0.16), transparent 40%),
+    radial-gradient(circle at 88% 8%, rgba(80, 245, 179, 0.12), transparent 35%),
+    linear-gradient(140deg, #040711 0%, #070d1c 45%, #050913 100%);
+  z-index: -2;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(62, 112, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(62, 112, 255, 0.08) 1px, transparent 1px);
+  background-size: 34px 34px;
+  opacity: 0.16;
+  z-index: -1;
+}
+
+.title-font {
+  font-family: "Sora", "IBM Plex Sans", sans-serif;
+}
+
+.scroll-skin {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(84, 163, 255, 0.45) transparent;
+}
+
+.scroll-skin::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scroll-skin::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(84, 163, 255, 0.8), rgba(18, 214, 223, 0.8));
+  border-radius: 9999px;
+}
