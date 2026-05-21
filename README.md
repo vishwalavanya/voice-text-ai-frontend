@@ -19,6 +19,8 @@ Features
 🎨 Tailwind CSS Styling
 🔁 Automatic Reconnection Handling
 📡 Live Voice Streaming
+
+
 Tech Stack
 Frontend
 React.js
